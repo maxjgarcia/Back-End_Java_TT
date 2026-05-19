@@ -1,6 +1,7 @@
+package com.backend.productos;
 import java.util.Scanner;
 
-public class BackEnd {
+public class Productos {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         int value = scanner.nextInt() ;
@@ -10,3 +11,6 @@ public class BackEnd {
         scanner.close();
     }
 }
+
+
+
