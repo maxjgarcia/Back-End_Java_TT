@@ -1,7 +1,7 @@
-package com.backend.productos;
+package com.backend.clientes;
 import java.util.Scanner;
 
-public class Productos {
+public class Clientes {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         char value = scanner.next().charAt(0);
@@ -10,8 +10,5 @@ public class Productos {
         System.out.println(value);
 
         scanner.close();
-    }
 }
-
-
-
+}
