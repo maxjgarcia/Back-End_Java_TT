@@ -1,4 +1,4 @@
-package com.backend.productos;
+package talento.src.com.techlab.productos;
 import java.util.Scanner;
 
 public class Productos {
@@ -6,11 +6,11 @@ public class Productos {
 
         Scanner scanner = new Scanner(System.in);
         
-        int option = 0;
+        boolean openMenu = true;
 
-        while(option != 4){
+        while(openMenu){
             System.out.println("ingresar una opcion");
-            option = scanner.nextInt();
+            int option = scanner.nextInt();
 
            switch (option) {
             case 1:
@@ -23,7 +23,8 @@ public class Productos {
                 System.out.println("3");
                 break;
             case 4:
-                break;
+                openMenu = false;
+                break; 
             default:
                 break;
         } 
