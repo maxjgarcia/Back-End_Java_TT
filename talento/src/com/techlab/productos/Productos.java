@@ -1,4 +1,4 @@
-package talento.src.com.techlab.productos;
+package com.techlab.productos;
 import java.util.Scanner;
 
 public class Productos {

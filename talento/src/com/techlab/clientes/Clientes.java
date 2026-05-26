@@ -1,4 +1,4 @@
-package com.backend.clientes;
+package com.techlab.clientes;
 import java.util.Scanner;
 
 public class Clientes {
