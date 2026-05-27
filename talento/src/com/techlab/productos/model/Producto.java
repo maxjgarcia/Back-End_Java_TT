@@ -1,0 +1,46 @@
+package com.techlab.productos.model;
+
+public class Producto {
+
+    private int id;
+    private String nombre;
+    private double precio;
+
+    public Producto(){}
+
+    public Producto(int id, String nombre, double precio){
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    //GETTER
+    public int getID(){
+        return this.id;
+    }
+    public String getNombre(){
+        return this.nombre;
+    }
+    public double getPrecio(){
+        return this.precio;
+    }
+    //SETTER
+    public void setID(int id){
+        this.id = id;
+    }
+    public void setNombre(String nombre){
+        this.nombre = nombre;    
+    }
+    public void setPrecio(double precio){
+        this.precio = precio;
+    }
+
+     @Override
+    public String toString() {
+        return "Producto [" +
+                "ID: " + id +
+                ", nombre: '" + nombre + '\'' +
+                ", precio: $" + precio +
+                ']';
+    }
+}
