@@ -5,13 +5,15 @@ public class Producto {
     private int id;
     private String nombre;
     private double precio;
+    private Categoria categoria;
 
     public Producto(){}
 
-    public Producto(int id, String nombre, double precio){
+    public Producto(int id, String nombre, double precio, Categoria categoria){
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
+        this.categoria = categoria;
     }
 
     //GETTER
@@ -24,6 +26,9 @@ public class Producto {
     public double getPrecio(){
         return this.precio;
     }
+    public Categoria getCategoria() {
+        return this.categoria;
+    }
     //SETTER
     public void setID(int id){
         this.id = id;
@@ -34,13 +39,16 @@ public class Producto {
     public void setPrecio(double precio){
         this.precio = precio;
     }
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
      @Override
     public String toString() {
-        return "Producto [" +
+        return "Producto - " +
                 "ID: " + id +
                 ", nombre: '" + nombre + '\'' +
                 ", precio: $" + precio +
-                ']';
+                ", categoría: '" + categoria.getNombre() + '\'';
     }
 }

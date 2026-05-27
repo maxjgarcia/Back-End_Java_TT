@@ -2,12 +2,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import com.techlab.productos.model.Producto;
+import com.techlab.productos.model.Categoria;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<Producto> productos = new ArrayList<>(); 
+        ArrayList<Producto> productos = new ArrayList<>();
+        ArrayList<Categoria> categorias = new ArrayList<>();
+        
+        precargarCategorias(categorias);
         
         boolean openMenu = true;
 
@@ -24,7 +28,7 @@ public class App {
 
            switch (option) {
             case 1:
-                ingresarProducto(scanner, productos);
+                ingresarProducto(scanner, productos, categorias);
                 break;
             case 2:
                 mostrarProductos(scanner, productos);
@@ -51,8 +55,16 @@ public class App {
         scanner.close();
     }
 
+    //Hardcode de categorias
+    public static void precargarCategorias(ArrayList<Categoria> categorias) {
+        categorias.add(new Categoria(1, "Electrónica", "Productos tecnológicos y electrónicos"));
+        categorias.add(new Categoria(2, "Periféricos", "Accesorios para computadora"));
+        categorias.add(new Categoria(3, "Alimentos", "Productos alimenticios"));
+        categorias.add(new Categoria(4, "Limpieza", "Artículos de limpieza del hogar"));
+    }
+
     // METODO DE INGRESO PRODUCTOS
-    public static void ingresarProducto(Scanner scanner, ArrayList<Producto> productos){
+    public static void ingresarProducto(Scanner scanner, ArrayList<Producto> productos, ArrayList<Categoria> categorias){
         System.out.println("\n-- INGRESAR PRODUCTO --");
         int id = validarInt(scanner, "Ingrese el id del producto: ");
 
@@ -64,7 +76,11 @@ public class App {
         String nombre = validarTexto(scanner, "Ingrese el nombre del producto: ");
         double precio = validarDouble(scanner, "Ingrese el precio del producto: ");
 
-        Producto producto = new Producto(id, nombre, precio);
+        mostrarCategorias(categorias);
+
+        Categoria categoriaSeleccionada = pedirCategoriaExistente(scanner, categorias);
+
+        Producto producto = new Producto(id, nombre, precio, categoriaSeleccionada);
 
         productos.add(producto);
 
@@ -187,6 +203,26 @@ public class App {
         return null;
     }
 
+    // METODOS DE CATEGORIAS
+    public static void mostrarCategorias(ArrayList<Categoria> categorias) {
+        System.out.println("\n-- CATEGORIAS DISPONIBLES --");
+
+        for (Categoria categoria : categorias) {
+            System.out.println(categoria);
+        }
+    }
+
+    public static Categoria buscarCategoriaId(ArrayList<Categoria> categorias, int id) {
+
+        for (Categoria categoria : categorias) {
+            if (categoria.getID() == id) {
+                return categoria;
+            }
+        }
+
+        return null;
+    }
+
     //CHECKEO DE IMPUTS
     public static int validarInt(Scanner scanner, String mensaje) {
     while (true) {
@@ -230,6 +266,21 @@ public class App {
             }
 
             System.out.println("Error: debe ingresar un texto.");
+        }
+    }
+
+     public static Categoria pedirCategoriaExistente(Scanner scanner, ArrayList<Categoria> categorias) {
+
+        while (true) {
+            int codigoCategoria = validarInt(scanner, "Ingrese el código de la categoría: ");
+
+            Categoria categoria = buscarCategoriaId(categorias, codigoCategoria);
+
+            if (categoria != null) {
+                return categoria;
+            }
+
+            System.out.println("Error: la categoría no existe.");
         }
     }
 }
